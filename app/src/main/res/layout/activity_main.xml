@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:weightSum="20"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_weight="18"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_id"
+            android:padding="4dp"
+            android:background="@android:color/darker_gray"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:weightSum="6"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:gravity="center"
+            android:weightSum="6"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/insert_edit_id"
+                android:hint="Sequence"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/insertId"
+                android:text="Insert"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:weightSum="6"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/delete_id"
+                android:hint="Sequence"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/delete_id_btn"
+                android:text="Delete"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
