@@ -6,9 +6,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -50,8 +54,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         myAdapter = new ExampleAdapter(exampleItemArrayList);
+
+
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(myAdapter);
+
+        myAdapter.OnclickListener(new ExampleAdapter.ClickListener() {
+            @Override
+            public void OnSingleClick(int position, View view) {
+                Toast.makeText(getApplicationContext(),"single Click has done",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnLongClick(int position, View view) {
+                Toast.makeText(getApplicationContext(),"Long Click has Done",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        MenuItem searchItem = menu.findItem(R.id.search_icon);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        return true;
     }
 
     @Override
@@ -74,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void insertItem(int position){
-        exampleItemArrayList.add(position,new
+        exampleItemArrayList.add(new
                 ExampleItem(R.drawable.rakib_bro,"Item add at the position of "+position,"Line number 2"));
         myAdapter.notifyItemInserted(position);
         insert_edit_text.setText("");
